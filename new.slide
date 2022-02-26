@@ -127,7 +127,7 @@ Fun–Programming with Go should be fun!
 
 1. Download from https://golang.org/dl
 
-2. Installer should put `go` in your `$PATH` (you may need to restart any open Terminal sessions for the change to take effect)
+2. Installer should put *go* in your `$PATH` (you may need to restart any open Terminal sessions for the change to take effect)
 
 3. Create workspace dir `$HOME/go` (or set `$GOPATH` to use a different location)
 
@@ -257,3 +257,109 @@ single line initialization
  var (
  	name, almaMater, age = "Ranveer Singh", "Indiana University", 34
  )
+
+ * Declaration + Initialization Shorthand
+
+ - inside a function, the shorthand `:=` can be used
+
+ .play src/ranveer.go
+
+ - outside functions, everything begins with a keyword (`var`, `func`, etc.) and the `:=` shorthand is not available
+
+ * Constants
+
+ - like variables, but declared with the `const` keyword (and of course can't be changed)
+ - integer, floating point, string, rune, boolean, and complex numbers
+ - can't use := with constants
+ - type inferred if not supplied
+ - typically written in `MixedCase` or all caps
+
+  const SpeedOfLight = 2.99792458e8 // meters per second
+  const PI = 3.1415926 // already defined in math package
+  const SeparatorChar rune = ':'
+  const SpaceChar byte = ' '
+  const Message string = "1...2...3...Go!"
+  const (
+  	StatusOK              = 0
+  	StatusConnectionReset = 1
+  	StatusOtherError      = 2
+  )
+
+ * Constants (cont'd)
+
+ - `iota` is a predeclared identifier that represents successive untyped integer constants
+
+ .play src/constants.go
+
+ * Constants (cont'd)
+
+ - `iota` can be used in expressions so you can do things like this
+
+ .play src/iota.go /START OMIT/,/END OMIT/
+
+ - 1 << 10 = 0b1000000000 = 2^10 = 1024
+
+ * Type Conversion/Casting
+
+ - `T(v)` converts the value v to the type T
+
+  var p int = int(PI)
+  var f float64 = float64(p)
+  var u uint = uint(f)
+
+ - no automatic type promotion (as is done in C and some other languages)
+
+ - *EDIT* *THE* *CODE* to fix the problem after running the below and identifying the problem
+
+ .play -edit src/typefunc.go /START OMIT/,/END OMIT/
+
+ * Converting to/from Strings
+ .link https://golang.org/pkg/strconv strconv package
+
+ - most common conversions are `strconv.Atoi()` (ASCII to integer) and `strconv.Itoa()` (vice versa)
+ - super useful functions in there
+
+ * Outputting
+
+ * The fmt Package
+
+ as we've seen, `print` and `println` are built in to Golang
+ .link https://golang.org/ref/spec#Bootstrapping ...but they may eventually go away
+
+ the `fmt` package contains versions that are more flexible (and it's considered more idiomatic to use `fmt`)
+
+ believe it or not, it's pronounced "`fumpt`"
+
+ * fmt.Printf
+
+ - formatted print a la C/C++/Java
+ - %s = print a string value
+ - %d = print an integer value
+ - %f = print a float value
+
+ .play -edit src/printf.go
+
+ * fmt.Printf (cont'd)
+ - %v = print the value in a default format
+ - %T = print the type of the variable
+ - %t = print a Boolean value as true or false
+
+ .play -edit src/printf2.go
+
+ * fmt.Sprintf
+
+ - "print" into a string, rather than to the screen
+ - also `Sprint` and `Sprintln`
+
+ .play -edit src/sprintf.go
+
+ * Logging
+
+ .link https://golang.org/pkg/log/ Golang log package used for debugging
+
+ (by the way, we can use the `godoc` tool if we are offline)
+
+ - by default, log messages go to stderr
+ - can be configured to send log messages to files
+
+ _much_ _better_ than fmt, but somewhat lacking as loggers go
