@@ -363,3 +363,12 @@ single line initialization
  - can be configured to send log messages to files
 
  _much_ _better_ than fmt, but somewhat lacking as loggers go
+
+ - doesn't provide levels (e.g., debug, notice, warning, etc.)
+ - doesn't let you configure separate loggers for each package
+ - Google gives you glog (https://godoc.org/github.com/golang/glog)
+ - also consider loggo (https://godoc.org/github.com/juju/loggo)
+
+ * Simple Logging Example
+
+ .play -numbers src/logging.go
