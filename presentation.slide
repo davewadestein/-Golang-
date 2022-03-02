@@ -103,21 +103,13 @@ Clean and Simple–Go strives to keep things small and beautiful. You should be 
 
 Concurrent–Easy to "fire off" functions to be run as lightweight threads.
 
-Channels–Communication with these goroutines is done, either via shared state or via channels.
-
 Fast–Compilation is fast and execution is fast. The aim is to be as fast as C. Compilation time is measured in seconds.
 
 Safe–Explicit casting and strict rules when converting one type to another. Go has garbage collection. No free()!...the language takes care of it.
 
 Standard format–A Go program can be formatted in (almost) any way the programmers want, but an official format exists. The rule is very simple: The output of the filter gofmt is the officially endorsed format.
 
-* 
-
-Postfix types–The type specification is given after the variable name, thus var a int, instead of int a.
-
-UTF-8–UTF-8 is everywhere, in strings and in the program code. Finally you can use Φ=Φ+1 in your source code.
-
-Open Source–The Go license is completely open source.
+Postfix types–Type spec comes after the variable name, thus var a int, instead of int a.
 
 Fun–Programming with Go should be fun!
 
@@ -125,7 +117,7 @@ Fun–Programming with Go should be fun!
 
 * Installation
 
-1. Download from https://golang.org/dl
+1. Download from https://go.dev/
 
 2. Installer should put `go` in your `$PATH` (you may need to restart any open Terminal sessions for the change to take effect)
 
@@ -142,7 +134,9 @@ Fun–Programming with Go should be fun!
 
 * Compiling/Running
 
-0. export GO111MODULE=off
+0. export GO111MODULE=auto
+
+- or, if on Windows, set the environment variable via Control Panel
 
 1. cd $HOME/go/src/hello
 
@@ -166,13 +160,25 @@ Go code (source and compiled) can be found in your GOPATH
 
 `src` contains source code
 `bin` contains executables
-`pkg` contains compiled versions of the available libraries so the compiler can link against them without recompiling them
+`pkg` contains compiled versions of the available libraries
 
 go tool
 
-- go run will compile and run your code
-- go build will produce an executable
-- go install will install it in `$GOPATH/bin`
+- go run = compile and run your code
+- go build = compile/produce an executable
+- go install = install executable in `$GOPATH/bin`
+- go env = show relevant environment variables
+- go get = download dependencies
+- go mod = create and manage modules (new since 1.13)
+
+* If you want to view the presentation like I am doing
+
+- first try going to the URL I give you
+- if that doesn't work, you can install the go present tool
+- go get -u golang.org/x/tools/cmd/present
+- present should be install in $HOME/go/bin
+- try running 'go present'
+- if see "Open your web browser and visit http://127.0.0.1:3999" it's working...
 
 * The Golang Playground 
 
@@ -186,7 +192,6 @@ go tool
 
 many editors have Golang plugins
 
-- MacVim
 - Atom
 - Sublime
 - Eclipse
